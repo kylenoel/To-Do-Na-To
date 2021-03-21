@@ -1,4 +1,9 @@
+import 'dart:async';
+
 import 'package:sqflite/sqflite.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart';
+import 'package:todo_nato/taskmodel.dart';
 
 createDatabase() async {
   String databasesPath = await getDatabasesPath();
@@ -17,44 +22,7 @@ void populateDb(Database database, int version) async {
       ")");
 }
 
-class Task {
-  int id;
-  String subjectName;
-  String taskName;
-  String priorityLevel;
-
-  Task({
-    this.id,
-    this.subjectName,
-    this.taskName,
-    this.priorityLevel,
-  });
-
-  int get id => id;
-  String get subjectName => subjectName;
-  String get taskName => taskName;
-  String get priorityLevel => priorityLevel;
-
-
-  factory Task.fromJson(Map<String, dynamic> data) => new Task(
-    id: data["id"],
-    subjectName: data["subject_name"],
-    taskName: data["task_name"],
-    priorityLevel: data["priority_level"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "subject_name": subjectName,
-    "task_name": taskName,
-    "priority_level": priorityLevel,
-  };
-}
-
 Future<int> createTask(Task task) async {
   var result = await database.insert("Task", task.toMap());
   return result;
 }
-
-
-
