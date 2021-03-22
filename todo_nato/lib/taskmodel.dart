@@ -1,4 +1,3 @@
-//defining Task model
 class Task {
   final int id;
   String subjectName;
@@ -12,23 +11,19 @@ class Task {
     this.priorityLevel,
   });
 
-  int get id => id;
-  String get subjectName => subjectName;
-  String get taskName => taskName;
-  String get priorityLevel => priorityLevel;
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'subjectName': subjectName,
+      'taskName': taskName,
+      'priorityLevel': priorityLevel
+    };
+  }
 
-
-  factory Task.fromJson(Map<String, dynamic> data) => new Task(
-    id: data["id"],
-    subjectName: data["subject_name"],
-    taskName: data["task_name"],
-    priorityLevel: data["priority_level"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "subject_name": subjectName,
-    "task_name": taskName,
-    "priority_level": priorityLevel,
-  };
+  // Implement toString to make it easier to see information about
+  // each task when using the print statement.
+  @override
+  String toString() {
+    return 'Task{id: $id, subject name: $subjectName, task name: $taskName, priority level: $priorityLevel}';
+  }
 }
