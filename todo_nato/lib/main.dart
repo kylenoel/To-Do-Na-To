@@ -22,7 +22,7 @@ void main() async {
   // Print the list of tasks (only cmsc for now).
   print(await DBProvider.db.tasks());
 
-  // Update Fido's age and save it to the database.
+  // Update cmsc's taskName and priorityLevel, and save it to the database.
   cmsc = Task(
     id: cmsc.id,
     subjectName: cmsc.subjectName,
