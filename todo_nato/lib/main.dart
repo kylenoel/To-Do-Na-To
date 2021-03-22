@@ -9,34 +9,34 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Open the database and store the reference.
 
-  var fido = Task(
+  var cmsc = Task(
     id: 0,
     subjectName: 'cmsc 129',
     taskName: 'develop app',
     priorityLevel: 'low',
   );
 
-  // Insert a dog into the database.
-  await DBProvider.db.newTask(fido);
+  // Insert a task into the database.
+  await DBProvider.db.newTask(cmsc);
 
-  // Print the list of dogs (only Fido for now).
+  // Print the list of tasks (only cmsc for now).
   print(await DBProvider.db.tasks());
 
   // Update Fido's age and save it to the database.
-  fido = Task(
-    id: fido.id,
-    subjectName: fido.subjectName,
+  cmsc = Task(
+    id: cmsc.id,
+    subjectName: cmsc.subjectName,
     taskName: 'set up db',
     priorityLevel: 'high',
   );
-  await DBProvider.db.updateTask(fido);
+  await DBProvider.db.updateTask(cmsc);
 
-  // Print Fido's updated information.
+  // Print cmsc's updated information.
   print(await DBProvider.db.tasks());
 
-  // Delete Fido from the database.
-  await DBProvider.db.deleteTask(fido.id);
+  // Delete cmsc from the database.
+  await DBProvider.db.deleteTask(cmsc.id);
 
-  // Print the list of dogs (empty).
+  // Print the list of tasks (empty).
   print(await DBProvider.db.tasks());
 }
